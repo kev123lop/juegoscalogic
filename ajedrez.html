@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende, Juega y Domina el Ajedrez: ¡Explorando Sistemas de Apertura!</title>
+    <link rel="stylesheet" href="ajedrez_styles.css">
+</head>
+<body>
+    <header>
+        <h1>Desbloquea el Poder de las Aperturas de Ajedrez: ¡Desde las Reglas hasta Sistemas Avanzados!</h1>
+        <p>Una guía completa para principiantes y entusiastas del ajedrez.</p>
+    </header>
+
+    <section id="como-jugar" class="chess-section">
+        <h2>Aprende a Jugar Ajedrez: Las Reglas Fundamentales</h2>
+        <p>El ajedrez es un juego de estrategia para dos jugadores que se juega en un tablero de 64 casillas dispuestas en una cuadrícula de ocho por ocho. Cada jugador comienza con 16 piezas:</p>
+        <ul>
+            <li>1 Rey</li>
+            <li>1 Dama</li>
+            <li>2 Torres</li>
+            <li>2 Caballos</li>
+            <li>2 Alfiles</li>
+            <li>8 Peones</li>
+        </ul>
+        <p>El objetivo del juego es dar jaque mate al rey del oponente, de tal manera que el rey esté bajo ataque (en "jaque") y no haya forma legal de escapar.</p>
+
+        <h3>Movimiento de las Piezas:</h3>
+        <div class="piece-movement">
+            <div class="movement-item">
+                <h4>Rey</h4>
+                <p>Se mueve una casilla en cualquier dirección (horizontal, vertical o diagonal).</p>
+                <img src="images/rey.png" alt="Movimiento del Rey">
+            </div>
+            <div class="movement-item">
+                <h4>Dama</h4>
+                <p>Se mueve cualquier número de casillas en línea recta a lo largo de cualquier columna, fila o diagonal.</p>
+                <img src="images/dama.webp" alt="Movimiento de la Dama">
+            </div>
+            <div class="movement-item">
+                <h4>Torre</h4>
+                <p>Se mueve cualquier número de casillas en línea recta a lo largo de cualquier columna o fila.</p>
+                <img src="images/torre.gif" alt="Movimiento de la Torre">
+            </div>
+            <div class="movement-item">
+                <h4>Alfil</h4>
+                <p>Se mueve cualquier número de casillas en línea recta a lo largo de cualquier diagonal. Cada alfil permanece en casillas de un solo color.</p>
+                <img src="images/alfil.png" alt="Movimiento del Alfil">
+            </div>
+            <div class="movement-item">
+                <h4>Caballo</h4>
+                <p>Se mueve en forma de "L": dos casillas en una dirección (horizontal o vertical) y luego una casilla perpendicular. Es la única pieza que puede saltar sobre otras piezas.</p>
+                <img src="images/caballo.jpg" alt="Movimiento del Caballo">
+            </div>
+            <div class="movement-item">
+                <h4>Peón</h4>
+                <p>Generalmente se mueve una casilla hacia adelante. En su primer movimiento, puede avanzar una o dos casillas. Los peones capturan en diagonal, una casilla hacia adelante.</p>
+                <img src="images/peon.png" alt="Movimiento del Peón">
+            </div>
+        </div>
+
+        <h3>Movimientos Especiales:</h3>
+        <ul>
+            <li><strong>Enroque:</strong> Un movimiento especial que involucra al rey y una de las torres. <img src="images/enroque.svg" alt="Enroque" class="inline-image"></li>
+            <li><strong>Captura al paso:</strong> Una captura especial que solo un peón puede realizar inmediatamente después de que un peón oponente avanza dos casillas desde su casilla inicial. <img src="images/captura_al_paso.svg" alt="Captura al Paso" class="inline-image"></li>
+            <li><strong>Promoción del peón:</strong> Si un peón llega a la última fila del tablero, se puede promocionar a cualquier otra pieza (excepto rey). <img src="images/promocion_peon.svg" alt="Promoción del Peón" class="inline-image"></li>
+        </ul>
+    </section>
+
+    <section id="sistema-londres" class="chess-section">
+        <h2>Dominando el Sistema Londres: Una Apertura Sólida</h2>
+        <p>El Sistema Londres es una apertura de ajedrez para las blancas que comienza típicamente con los movimientos:</p>
+        <ol>
+            <li>d4 <img src="images/d4.jpg" alt="Peón a d4" class="inline-move"></li>
+            <li>Af4 <img src="images/f4.jpg" alt="Alfil a f4" class="inline-move"></li>
+        </ol>
+        <p>Esta apertura es conocida por su solidez, facilidad de aprendizaje y la creación de una estructura de peones robusta.</p>
+
+        <h3>Ideas Estratégicas Clave del Sistema Londres:</h3>
+        <ul>
+            <li><strong>Control del centro:</strong> El peón en d4 establece una presencia central. <img src="images/centro.png" alt="Control del Centro con d4" class="inline-strategy"></li>
+            <li><strong>Desarrollo seguro del alfil de casillas negras:</strong> Af4 se desarrolla temprano, a menudo detrás de la cadena de peones. <img src="images/f4.jpeg" alt="Desarrollo del Alfil a f4" class="inline-strategy"></li>
+            <li><strong>Estructura de peones flexible:</strong> Las blancas pueden adaptar su estructura de peones según las respuestas de las negras. <img src="images/estr.png" alt="Estructura de Peones Flexible" class="inline-strategy"></li>
+            <li><strong>Ataque en el flanco de rey:</strong> A menudo, las blancas buscan crear amenazas en el flanco de rey después de un desarrollo sólido. <img src="images/flanco.jpg" alt="Ataque en el Flanco de Rey" class="inline-strategy"></li>
+        </ul>
+
+        <h3>Variantes Comunes y Respuestas de las Negras:</h3>
+        <ul>
+            <li><strong>...Cf6:</strong> Una respuesta común que busca controlar el centro. <img src="images/ncf6.png" alt="Negro Cf6" class="inline-move-negro"></li>
+            <li><strong>...e6:</strong> Otra respuesta sólida que a menudo conduce a estructuras cerradas. <img src="images/e6.png" alt="Negro e6" class="inline-move-negro"></li>
+            <li><strong>...c5:</strong> Una respuesta agresiva que busca desafiar el centro de las blancas. <img src="images/c5.png" alt="Negro c5" class="inline-move-negro"></li>
+        </ul>
+
+        <h3>Consejos para Jugar el Sistema Londres:</h3>
+        <ul>
+            <li>Desarrolla tus piezas de manera activa y coordínalas. <img src="images/desarrollo_activo.svg" alt="Desarrollo Activo" class="inline-tip"></li>
+            <li>Mantén una estructura de peones sólida. <img src="images/estructura_peones_solida.svg" alt="Estructura de Peones Sólida" class="inline-tip"></li>
+            <li>Considera las debilidades en la posición de tu oponente. <img src="images/debilidades_oponente.svg" alt="Debilidades del Oponente" class="inline-tip"></li>
+            <li>No tengas miedo de desviarte de las líneas principales si la posición lo requiere. <img src="images/adaptacion_apertura.svg" alt="Adaptación de Apertura" class="inline-tip"></li>
+        </ul>
+    </section>
+
+    <section id="otras-aperturas" class="chess-section">
+        <h2>Explorando Otras Aperturas Populares</h2>
+        <p>Si bien el Sistema Londres es una excelente opción, el mundo de las aperturas de ajedrez es vasto y emocionante. Aquí te presentamos algunas otras aperturas populares:</p>
+
+        <h3>La Apertura Española (Ruy López):</h3>
+        <p>Una de las aperturas más clásicas y estudiadas, que comienza con:</p>
+        <ol>
+            <li>e4 <img src="images/e4.jpeg" alt="Peón a e4" class="inline-move"></li>
+            <li>Cf3 <img src="images/ae.png" alt="Caballo a f3" class="inline-move"></li>
+            <li>Ab5 <img src="images/ae.png" alt="Alfil a b5" class="inline-move"></li>
+        </ol>
+        <p>Conocida por su potencial estratégico y sus numerosas variantes. <img src="images/epo.png" alt="Apertura Española (Ruy López)" class="apertura-image"></p>
+
+        <h3>La Defensa Siciliana:</h3>
+        <p>La respuesta más popular a 1. e4, caracterizada por:</p>
+        <ol>
+            <li>e4 <img src="images/si.jpeg" alt="Peón a e4" class="inline-move"></li>
+            <li>c5 <img src="images/siq.jpeg" alt="Peón a c5 (Negro)" class="inline-move-negro"></li>
+        </ol>
+        <p>Una apertura agresiva y desequilibrada que ofrece muchas oportunidades tácticas. <img src="images/siq.jpeg" alt="Defensa Siciliana" class="apertura-image"></p>
+
+        <h3>El Gambito de Dama:</h3>
+        <p>Una apertura clásica que busca el control del centro con:</p>
+        <ol>
+            <li>d4 <img src="images/gd.png" alt="Peón a d4" class="inline-move"></li>
+            <li>c4 <img src="images/gd.png" alt="Peón a c4" class="inline-move"></li>
+        </ol>
+        <p>Puede llevar a posiciones sólidas o a agudas batallas tácticas dependiendo de cómo responda el negro. <img src="images/gdama.png" alt="Gambito de Dama" class="apertura-image"></p>
+
+        <h3>La Defensa India de Rey:</h3>
+        <p>Una respuesta popular contra 1. d4, donde el negro permite que el blanco controle el centro inicialmente para luego contraatacarlo:</p>
+        <ol>
+            <li>d4 <img src="images/i.png" alt="Peón a d4" class="inline-move"></li>
+            <li>Cf3 <img src="images/i.png" alt="Caballo a f3" class="inline-move"></li>
+            <li>g6 <img src="images/i.png" alt="Peón a g6 (Negro)" class="inline-move-negro"></li>
+        </ol>
+        <p>Conocida por sus posiciones complejas y oportunidades de contraataque en el flanco de rey. <img src="images/india_rey.svg" alt="Defensa India de Rey" class="apertura-image"></p>
+    </section>
+
+    <section id="aprender-mas" class="chess-section">
+        <h2>Profundiza tus Conocimientos de Ajedrez</h2>
+        <p>El ajedrez es un juego con una profundidad inmensa. Para mejorar tu juego, considera explorar los siguientes temas:</p>
+        <ul>
+            <li><strong>Táctica:</strong> Patrones de ataque y defensa a corto plazo (ej. clavadas, horquillas, descubiertos). <img src="images/t.jpeg" alt="Táctica" class="inline-topic"></li>
+            <li><strong>Estrategia:</strong> Planificación a largo plazo, control del espacio, debilidades, fortalezas de las piezas. <img src="images/estra.jpeg" alt="Estrategia" class="inline-topic"></li>
+            <li><strong>Finales:</strong> Cómo jugar cuando quedan pocas piezas en el tablero. <img src="images/fin.jpeg" alt="Finales" class="inline-topic"></li>
+            <li><strong>Aperturas:</strong> Estudio de diferentes formas de comenzar la partida más allá de los sistemas mencionados. <img src="images/ape.jpeg" alt="Estudio de Aperturas" class="inline-topic"></li>
+            <li><strong>Análisis de partidas:</strong> Revisar tus propias partidas y las de grandes maestros. <img src="images/ana.jpeg" alt="Análisis de Partidas" class="inline-topic"></li>
+        </ul>
+
+        <h3>Recursos Útiles para Aprender Ajedrez:</h3>
+        <ul>
+            <li><a href="https://lichess.org/" target="_blank">Lichess.org: Juega gratis al ajedrez online y aprende.</a></li>
+            <li><a href="https://chess.com/" target="_blank">Chess.com: Otra excelente plataforma para jugar y aprender.</a></li>
+            <li>Busca canales de YouTube dedicados al ajedrez (ej. Agadmator's Chess Channel, The Chess Website).</li>
+            <li>Considera leer libros sobre estrategia y táctica de ajedrez.</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Pasión por el Ajedrez</p>
+        <p><a href="pagina_bienvenida.html" class="resource-link">Inicio</a></p>
+        <p><a href="jugar_ajedrez.html" class="resource-link">Jugar Ajedrez Online</a></p>
+        <p><a href="logout.php" class="resource-link">Cerrar Sesión</a> </p>
+
+    </footer>
+</body>
+</html>

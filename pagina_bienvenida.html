@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="styles.css">
+        
+</head>
+<body>
+    <div class="section">
+        <h1>¡Bienvenido, <?php session_start(); echo $_SESSION['username']; ?>!</h1>
+        <p>Has iniciado sesión exitosamente. Aquí encontrarás información interesante sobre el cubo Rubik, el ajedrez y los juegos lógicos.</p>
+    </div>
+
+    <div class="section">
+        <h2>Cómo Armar un Cubo Rubik (Introducción)</h2>
+        <p>Armar un cubo Rubik puede parecer desafiante al principio, pero con un método sistemático se vuelve accesible. El método más común para principiantes involucra los siguientes pasos:</p>
+        <ol>
+            <li>**La Cruz Blanca:** Resolver las aristas blancas para formar una cruz en la cara blanca, alineada con los centros de las caras adyacentes.</li>
+            <li>**Las Esquinas Blancas:** Colocar correctamente las esquinas blancas en sus posiciones correspondientes.</li>
+            <li>**Las Segundas Capas:** Resolver las aristas de la capa media sin desordenar las dos primeras capas.</li>
+            <li>**La Cruz Amarilla:** Crear una cruz amarilla en la cara superior.</li>
+            <li>**Orientar la Cara Amarilla:** Colocar las piezas amarillas de la cara superior en su posición correcta (aunque no necesariamente en el orden final).</li>
+            <li>**Permutar las Esquinas:** Colocar las esquinas de la cara superior en su posición correcta.</li>
+            <li>**Permutar las Aristas:** Colocar las aristas de la cara superior en su posición correcta para completar el cubo.</li>
+        </ol>
+        <p>Para una guía visual detallada, te recomiendo buscar tutoriales en video en plataformas como YouTube. Hay muchos recursos excelentes para principiantes.</p>
+        <p><strong>Recursos útiles:</strong></p>
+        <ul>
+            <li><a href="como_armar_rubik.html" target="_blank">Sitio oficial de Kevin aprende a resolver el cubo rubik</a></li>
+            <a href="pagina_cubo.html" class="logout-link">Jugar</a>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Ajedrez: Introducción a Sistemas Londres y más</h2>
+        <p>El ajedrez es un juego de estrategia complejo y fascinante. Existen numerosas aperturas y sistemas para comenzar una partida. El **Sistema Londres** es una apertura sólida y popular que se caracteriza por el movimiento temprano del peón de dama a d4 y el alfil de casillas negras a f4.</p>
+        <p><strong>Características del Sistema Londres:</strong></p>
+        <ul>
+            <li>Estructura de peones sólida y fácil de entender.</li>
+            <li>Desarrollo de piezas relativamente seguro.</li>
+            <li>Flexibilidad para adaptarse a diferentes respuestas del oponente.</li>
+        </ul>
+        <p>Además del Sistema Londres, existen muchas otras aperturas importantes, como la Apertura Española, la Defensa Siciliana, el Gambito de Dama, entre otras. Cada una tiene sus propias ideas estratégicas y tácticas.</p>
+        <p>Para aprender más sobre el Sistema Londres y otras aperturas, te recomiendo explorar los siguientes recursos:</p>
+        <ul>
+            <li><a href="ajedrez.html" target="_blank">Kevin web con warita exelente lugar para aprender a jugar ajedrez</a></li>
+            <li>Busca videos y artículos sobre "Sistema Londres ajedrez" y "aperturas de ajedrez" en línea.</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>¿Para Qué Sirven los Juegos Lógicos?</h2>
+        <p>Los juegos lógicos son actividades que desafían nuestro razonamiento, la resolución de problemas y el pensamiento estratégico. Son importantes por varias razones:</p>
+        <ul>
+            <li>**Mejoran el pensamiento crítico:** Nos obligan a analizar situaciones, evaluar opciones y tomar decisiones basadas en la lógica.</li>
+            <li>**Desarrollan habilidades de resolución de problemas:** Nos enseñan a abordar problemas complejos dividiéndolos en partes más pequeñas y buscando soluciones sistemáticas.</li>
+            <li>**Potencian la memoria y la concentración:** Muchos juegos lógicos requieren recordar reglas, patrones y secuencias, lo que ejercita nuestra memoria y atención.</li>
+            <li>**Fomentan la creatividad:** Algunos juegos lógicos nos animan a encontrar soluciones innovadoras y fuera de lo común.</li>
+            <li>**Son una forma divertida de aprender:** El aprendizaje a través del juego puede ser más atractivo y efectivo.</li>
+        </ul>
+        <p>Ejemplos de juegos lógicos incluyen:</p>
+        <ul>
+            <li>Sudoku</li>
+            <li>Crucigramas</li>
+            <li>Rompecabezas (como el cubo Rubik)</li>
+            <li>Ajedrez y otros juegos de estrategia</li>
+            <li>Acertijos y adivinanzas</li>
+            <li>Juegos de lógica computacional (como Portal o The Witness)</li>
+        </ul>
+        <p>Incorporar juegos lógicos en nuestra rutina puede ser una excelente manera de mantener nuestra mente activa y desarrollar habilidades cognitivas importantes.</p>
+        <a href="juegoslogicos.html" class="logout-link">Como Jugar</a>
+
+    </div>
+
+    <a href="logout.php" class="logout-link">Cerrar Sesión</a>
+    <a href="pagina_cubo.html" class="logout-link">Jugar</a>
+</body>
+</html>

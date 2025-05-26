@@ -1,0 +1,123 @@
+
+body {
+    font-family: 'Kanit', sans-serif; 
+    line-height: 1.7;
+    margin: 0;
+    padding: 0;
+    background-image: url('images/juegos_fondo_abstractoe.jpeg'); 
+    background-size: cover;
+    background-attachment: fixed;
+    color: #f8f8f2; 
+    overflow-x: hidden;
+}
+
+.section {
+    background: rgba(38, 50, 56, 0.85); 
+    color: #eee;
+    padding: 50px;
+    margin: 40px auto;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    max-width: 960px;
+    transform: perspective(600px) rotateX(2deg); 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.section:hover {
+    transform: perspective(600px) rotateX(0deg) translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+h1 {
+    color: #ffeb3b; 
+    font-size: 3.2em;
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px #000;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    animation: neonGlow 2s ease-in-out infinite alternate;
+}
+
+h2 {
+    color: #80cbc4; 
+    font-size: 2.4em;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #80cbc4;
+    padding-bottom: 15px;
+    letter-spacing: 1px;
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+ol {
+    list-style-type: decimal;
+    padding-left: 30px;
+    margin-bottom: 25px;
+}
+
+ol li {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+strong {
+    color: #f4ff81; 
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: square;
+    padding-left: 30px;
+    margin-bottom: 25px;
+}
+
+ul li {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+a {
+    color: #64ffda; 
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #a7ffeb;
+    text-shadow: 1px 1px 2px #000;
+}
+
+.logout-link {
+    display: block;
+    margin-top: 20px;
+    color: #f06292; 
+    font-weight: bold;
+    transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+}
+
+.logout-link:hover {
+    color: #ff8a65;
+    text-shadow: 1px 1px 2px #000;
+}
+
+
+@keyframes neonGlow {
+    0% {
+        text-shadow: 2px 2px 4px #000, -2px -2px 4px #000, 0 0 10px #ffeb3b, 0 0 20px #ffeb3b, 0 0 30px #ffeb3b;
+    }
+    100% {
+        text-shadow: 2px 2px 4px #000, -2px -2px 4px #000, 0 0 5px #ffeb3b, 0 0 10px #ffeb3b, 0 0 15px #ffeb3b;
+    }
+}

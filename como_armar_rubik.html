@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aprende y Juega con el Cubo Rubik y más</title>
+    <link rel="stylesheet" href="rubik_styles.css">
+</head>
+<body>
+    <header>
+        <h1>Aprende y Juega con el Cubo Rubik</h1>
+        <p>Explora guías detalladas, métodos de resolución y diviértete con juegos interactivos.</p>
+    </header>
+
+    <section id="metodo-principiantes" class="method-section">
+        <h2>Método para Principiantes del Cubo Rubik</h2>
+        <p>Este método es ideal para quienes se enfrentan al cubo Rubik por primera vez. Se basa en resolver el cubo capa por capa, utilizando algoritmos sencillos.</p>
+
+        <h3>Paso 1: La Cruz Blanca</h3>
+        <div class="step-container">
+            <div class="step-text">
+                <p>El objetivo inicial es formar una cruz blanca en una de las caras (generalmente la superior). Esto implica colocar las cuatro aristas blancas en su posición correcta, alineadas con los centros de las caras adyacentes. Presta atención a que el color de la otra cara de la arista coincida con el centro de su respectiva cara lateral.</p>
+                <p><strong>Consejo:</strong> Busca las aristas blancas desordenadas y muévelas a la capa superior. Luego, gíralas hasta que sus colores laterales coincidan con los centros y finalmente bájala a la cara blanca.</p>
+            </div>
+            <img src="images/principiante_paso1_cruz_blanca.svg" alt="Paso 1: Cruz Blanca" class="step-image">
+        </div>
+
+        <h3>Paso 2: Las Esquinas Blancas</h3>
+        <div class="step-container">
+            <div class="step-text">
+                <p>Una vez completada la cruz blanca, el siguiente paso es colocar las cuatro esquinas blancas en sus posiciones correctas. Cada esquina blanca tiene otros dos colores que deben coincidir con los centros de las dos caras adyacentes a la cara blanca. Gira las capas para llevar las esquinas a su posición y luego utiliza algoritmos sencillos para insertarlas correctamente.</p>
+                <p><strong>Algoritmos comunes:</strong></p>
+                <ul>
+                    <li>Si la esquina está en la capa inferior y necesita ir a la derecha: R U R' U'</li>
+                    <li>Si la esquina está en la capa inferior y necesita ir a la izquierda: L' U' L U</li>
+                </ul>
+            </div>
+            <img src="images/principiante_paso2_esquinas_blancas.svg" alt="Paso 2: Esquinas Blancas" class="step-image">
+        </div>
+
+        <h3>Paso 3: Las Segundas Capas</h3>
+        <div class="step-container">
+            <div class="step-text">
+                <p>Ahora, debemos resolver las cuatro aristas de la capa media. Estas aristas no contienen el color amarillo (asumiendo que el blanco está en la cara opuesta). Identifica las aristas correctas en la capa superior (las que no tienen amarillo) y utiliza algoritmos específicos para moverlas a su posición correcta en la capa media, asegurándote de que sus colores coincidan con los centros de las caras adyacentes.</p>
+                <p><strong>Algoritmos comunes:</strong></p>
+                <ul>
+                    <li>Mover arista de la capa superior a la izquierda: U' L' U L U F U' F'</li>
+                    <li>Mover arista de la capa superior a la derecha: U R U' R' U' B' U B</li>
+                </ul>
+            </div>
+            <img src="images/principiante_paso3_segunda_capa.svg" alt="Paso 3: Segundas Capas" class="step-image">
+        </div>
+
+        <h3>Paso 4: La Cruz Amarilla</h3>
+        <div class="step-container">
+            <div class="step-text">
+                <p>En este paso, el objetivo es formar una cruz amarilla en la cara superior. Al principio, puede que solo tengas el centro amarillo, una línea, una L o un punto amarillo. Utiliza una secuencia de movimientos específica para llegar a la configuración de la cruz amarilla, sin importar la orientación de las piezas amarillas de la arista.</p>
+                <p><strong>Algoritmo común:</strong> F R U R' U' F' (repite hasta formar la cruz)</p>
+            </div>
+            <img src="images/principiante_paso4_cruz_amarilla.svg" alt="Paso 4: Cruz Amarilla" class="step-image">
+        </div>
+
+        <h3>Paso 5: Orientar la Cara Amarilla</h3>
+        <div class="step-container">
+            <div class="step-text">
+                <p>Ahora, el objetivo es que todas las piezas amarillas de la cara superior estén orientadas hacia arriba, formando una cara amarilla completa. Es posible que las aristas amarillas ya estén en su lugar, pero las esquinas amarillas probablemente no lo estén. Utiliza un algoritmo que orienta las esquinas amarillas sin alterar las capas inferiores.</p>
+                <p><strong>Algoritmo común:</strong> R U R' U R U2 R' U (repite hasta que una esquina amarilla esté orientada, luego gira la capa superior y repite)</p>
+            </div>
+            <img src="images/principiante_paso5_orientar_amarillo.svg" alt="Paso 5: Orientar Cara Amarilla" class="step-image">
+        </div>
+
+        <h3>Paso 6: Permutar las Esquinas Amarillas</h3>
+        <div class="step-container">
+            <div class="step-text">
+                <p>En este paso, colocaremos las esquinas amarillas en sus posiciones correctas. Es posible que ya estén orientadas correctamente, pero no en el lugar adecuado. Utiliza algoritmos para intercambiar las esquinas hasta que cada una esté en su posición correcta, haciendo coincidir sus colores con las caras adyacentes.</p>
+                <p><strong>Algoritmo común:</strong> U R U' L' U R' U' L (repite hasta que las esquinas estén en su lugar)</p>
+            </div>
+            <img src="images/principiante_paso6_permutar_esquinas.svg" alt="Paso 6: Permutar Esquinas" class="step-image">
+        </div>
+
+        <h3>Paso 7: Permutar las Aristas Amarillas</h3>
+        <div class="step-container">
+            <div class="step-text">
+                <p>El último paso es colocar las aristas amarillas en su posición correcta para completar el cubo. Es posible que algunas o todas las aristas ya estén en su lugar, pero otras necesitarán ser intercambiadas. Utiliza un algoritmo final para permutar las aristas amarillas hasta que todos los colores de todas las caras del cubo coincidan. ¡Felicidades, has resuelto el cubo Rubik!</p>
+                <p><strong>Algoritmos comunes:</strong></p>
+                <ul>
+                    <li>Intercambiar aristas frontales y derechas (en sentido horario): R U R' U R U2 R' U</li>
+                    <li>Intercambiar aristas frontales y derechas (en sentido antihorario): U' L' U L U' L' U2 L</li>
+                </ul>
+            </div>
+            <img src="images/principiante_paso7_permutar_aristas.svg" alt="Paso 7: Permutar Aristas" class="step-image">
+        </div>
+    </section>
+
+    <section id="metodo-fridrich" class="method-section">
+        <h2>El Método Fridrich (CFOP) para Speedcubing</h2>
+        <p>El método Fridrich, también conocido como CFOP (Cross, F2L, OLL, PLL), es un sistema avanzado de speedcubing diseñado para resolver el cubo Rubik de la manera más rápida posible. Requiere el aprendizaje de numerosos algoritmos y el desarrollo de una gran habilidad para reconocer patrones rápidamente.</p>
+
+        <h3>Paso 1: La Cruz (Cross)</h3>
+        <div class="step-container">
+            <div class="step-text">
+                <p>El primer paso es formar una cruz en una de las caras del cubo, generalmente la blanca, en la capa inferior. A diferencia del método para principiantes, los speedcubers buscan construir la cruz de la manera más eficiente posible, a menudo planificando los movimientos durante la fase de inspección (los 15 segundos permitidos antes de comenzar el cronómetro). El objetivo es colocar las cuatro aristas de la cruz en su posición correcta y con la orientación adecuada en el menor número de movimientos.</p>
+                <p><strong>Enfoque:</strong> Planificación anticipada, eficiencia de movimientos, reconocimiento de casos.</p>
+            </div>
+            <img src="images/fridrich_paso1_cruz.jpeg" alt="Paso 1: Cruz (Fridrich)" class="step-image">
+        </div>
+
+        <h3>Paso 2: Las Dos Primeras Capas (F2L - First Two Layers)</h3>
+        <div class="step-container">
+            <div class="step-text">
+                <p>F2L implica resolver las dos primeras capas del cubo simultáneamente. Esto se logra emparejando una esquina de la primera capa con una arista de la segunda capa y luego insertando este par en su slot correcto. Existen 41 casos estándar de F2L, aunque los speedcubers a menudo desarrollan intuición para resolver pares de manera no estándar y más eficiente.</p>
+                <p><strong>Enfoque:</strong> Resolución simultánea de esquinas y aristas, eficiencia de movimientos, reconocimiento rápido de casos.</p>
+            </div>
+            <img src="images/fridrich_paso2_f2l.jpg" alt="Paso 2: F2L (Fridrich)" class="step-image">
+        </div>
+
+        <h3>Paso 3: Orientación de la Última Capa (OLL - Orientation of the Last Layer)</h3>
+        <div class="step-container">
+            <div class="step-text">
+                <p>OLL tiene como objetivo orientar todas las piezas de la última capa (generalmente la amarilla) de manera que el color amarillo quede hacia arriba. Hay 57 algoritmos estándar de OLL que cubren todos los posibles estados de orientación de la última capa después de resolver las dos primeras capas. Aprender estos algoritmos y reconocer los casos rápidamente es crucial para la velocidad.</p>
+                <p><strong>Enfoque:</strong> Aprendizaje y reconocimiento de 57 algoritmos, orientación eficiente de la capa superior.</p>
+            </div>
+            <img src="images/fridrich_paso3_oll.png" alt="Paso 3: OLL (Fridrich)" class="step-image">
+        </div>
+
+        <h3>Paso 4: Permutación de la Última Capa (PLL - Permutation of the Last Layer)</h3>
+        <div class="step-container">
+            <div class="step-text">
+                <p>PLL implica permutar (colocar en la posición correcta) todas las piezas de la última capa, manteniendo su orientación amarilla hacia arriba. Hay 21 algoritmos estándar de PLL que cubren todas las posibles permutaciones de la última capa. Al igual que con OLL, el reconocimiento rápido de los casos y la ejecución fluida de los algoritmos son esenciales.</p>
+                <p><strong>Enfoque:</strong> Aprendizaje y reconocimiento de 21 algoritmos, colocación correcta de las piezas de la capa superior.</p>
+            </div>
+            <img src="images/fridrich_paso4_pll.png" alt="Paso 4: PLL (Fridrich)" class="step-image">
+        </div>
+
+        <p>Dominar el método Fridrich requiere una inversión significativa de tiempo y esfuerzo para aprender los algoritmos y desarrollar la intuición y la velocidad de reconocimiento de casos. Sin embargo, es la base de la mayoría de los récords mundiales de speedcubing.</p>
+        <p><strong>Recursos para aprender Fridrich:</strong></p>
+        <ul>
+            <li>Busca tutoriales detallados de "CFOP Rubik's Cube" o "Método Fridrich" en YouTube. Hay muchos speedcubers experimentados que comparten sus conocimientos.</li>
+            <li>Explora sitios web como SpeedSolving.com y foros dedicados al speedcubing para encontrar guías, algoritmos y discusiones.</li>
+            <li>Considera utilizar software de aprendizaje de algoritmos para practicar el reconocimiento de casos y la ejecución de los algoritmos de OLL y PLL.</li>
+        </ul>
+    </section>
+ <footer>
+        <p>&copy; 2025 Aprende y Juega con Juegos Lógicos</p>
+        <p><a href="pagina_bienvenida.html" class="resource-link">Inicio</a></p>
+        <p><a href="cubo_virtual.html" class="resource-link">Jugar con un Cubo Virtual</a></p>
+        <p><a href="logout.php" class="resource-link">Cerrar Sesión</a> </p>
+    </footer>
+</body>
+</html>

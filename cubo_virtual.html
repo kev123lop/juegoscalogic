@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cubo Rubik Virtual</title>
+    <link rel="stylesheet" href="cubo_styles.css">
+</head>
+<body>
+    <div class="cubo-container">
+        <div class="cubo">
+            </div>
+    </div>
+
+    <div class="controles">
+        <button onclick="rotarCapa('U')">U</button>
+        <button onclick="rotarCapa('U\'')">U'</button>
+        <button onclick="rotarCapa('D')">D</button>
+        <button onclick="rotarCapa('D\'')">D'</button>
+        <button onclick="rotarCapa('F')">F</button>
+        <button onclick="rotarCapa('F\'')">F'</button>
+        <button onclick="rotarCapa('B')">B</button>
+        <button onclick="rotarCapa('B\'')">B'</button>
+        <button onclick="rotarCapa('L')">L</button>
+        <button onclick="rotarCapa('L\'')">L'</button>
+        <button onclick="rotarCapa('R')">R</button>
+        <button onclick="rotarCapa('R\'')">R'</button>
+        <button onclick="mezclarCuboReal()">Mezclar</button>
+        <button onclick="resolverCuboReal()">Resolver</button>
+    </div>
+
+    <script src="cubo_script.js"></script>
+</body>
+</html>

@@ -1,0 +1,277 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;  
+}
+
+body {
+    font-family: 'Roboto', sans-serif;  
+    margin: 0;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: #e0e0e0;  
+    min-height: 100vh;  
+    display: flex;
+    justify-content: center;  
+    align-items: center;  
+    padding: 20px;
+    box-sizing: border-box;
+    position: relative;
+    animation: animeBackgroundPulse 20s ease-in-out infinite alternate;
+}
+@keyframes animeBackgroundPulse {
+    0% { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); }
+    50% { background: linear-gradient(135deg, #1a1440, #40397c, #30305a); } 
+    100% { background: linear-gradient(135deg, #0f0c29, #302b63, #24243e); }
+}
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../Proye/images/lop.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.4;  
+    z-index: -1;  
+    animation: animeOverlayFade 25s ease-in-out infinite alternate;
+}
+@keyframes animeOverlayFade {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.5; }  
+}
+.container {
+    position: relative;
+    z-index: 2;  
+    background-color: rgba(30, 30, 50, 0);  
+    border: 3px solid transparent;  
+    border-image: linear-gradient(45deg, #ee82ee, #a020f0, #00ffff, #a020f0, #ee82ee) 1;  
+    border-image-slice: 1;
+    border-image-width: 3px;
+    border-image-repeat: stretch;
+    animation: borderPulse 5s linear infinite, containerGlowPulse 3s ease-in-out infinite alternate;  
+    box-shadow: 0 0 40px rgba(148, 0, 211, 0.8);
+    padding: 40px;
+    border-radius: 15px;  
+    text-align: center;  
+    max-width: 800px;  
+    width: 95%;
+    box-sizing: border-box;
+    overflow-y: auto;  
+    max-height: 90vh;  
+    backdrop-filter: blur(8px) brightness(0.8);  
+}
+@keyframes borderPulse {
+    0% { border-image-source: linear-gradient(45deg, #ee82ee, #a020f0, #00ffff, #a020f0, #ee82ee); }
+    100% { border-image-source: linear-gradient(45deg, #a020f0, #00ffff, #a020f0, #ee82ee, #ee82ee); } /* Anima la posición del degradado */
+}
+@keyframes containerGlowPulse {
+    0% { box-shadow: 0 0 40px rgba(148, 0, 211, 0.8); }  
+    50% { box-shadow: 0 0 50px rgba(0, 255, 255, 1); }  
+    100% { box-shadow: 0 0 40px rgba(148, 0, 211, 0.8); }
+}
+.anime-title {
+    font-family: 'Titillium Web', sans-serif;  
+    color: #a020f0; 
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 3.5em;  
+    text-shadow: 0 0 20px rgba(160, 32, 240, 1);  
+    letter-spacing: 3px;  
+    text-transform: uppercase;  
+    animation: titleGlowPulse 2s ease-in-out infinite alternate;  
+}
+@keyframes titleGlowPulse {
+    0% { text-shadow: 0 0 20px rgba(160, 32, 240, 1); }
+    100% { text-shadow: 0 0 30px rgba(0, 255, 255, 1); }  
+}
+.anime-text {
+    font-family: 'Roboto', sans-serif;  
+    color: #e0e0e0;  
+}
+.anime-card {
+    background-color: rgba(50, 50, 70, 0);  
+    border: 1px solid transparent;  
+    border-image: linear-gradient(90deg, #a020f0, #00ffff) 1;  
+    border-image-slice: 1;
+    border-image-width: 1px;
+    border-image-repeat: stretch;
+    animation: fadeIn 1s ease-out, cardBorderPulse 2.5s ease-in-out infinite alternate; 
+    padding: 30px; 
+    margin-bottom: 30px;
+    font-size: 1.4em; 
+    line-height: 1.7; 
+    text-align: left; 
+    border-radius: 12px;
+    box-shadow: inset 0 0 15px rgba(106, 13, 173, 0.5); 
+    backdrop-filter: blur(5px) brightness(0.9); 
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes cardBorderPulse {
+    0% { border-image-source: linear-gradient(90deg, #a020f0, #00ffff); }
+    100% { border-image-source: linear-gradient(90deg, #00ffff, #a020f0); }
+}
+.options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); 
+    gap: 18px;  
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+}
+.anime-button {
+    background-color: #4a00e0;  
+    border: 2px solid #8a2be2;  
+    color: #fff;  
+    padding: 16px 28px; 
+    font-size: 1.2em;  
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;  
+    font-family: 'Titillium Web', sans-serif;  
+    letter-spacing: 1.5px;  
+    text-transform: uppercase;  
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);  
+    animation: buttonSubtlePulse 2s ease-in-out infinite alternate;  
+}
+@keyframes buttonSubtlePulse {
+    0% { transform: scale(1); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); }
+    100% { transform: scale(1.02); box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); }
+}
+.anime-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; 
+    width: 40%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);  
+    transform: skewX(-20deg);
+    transition: all 0.5s ease;  
+    z-index: -1;
+}
+.anime-button:hover::before {
+    left: 100%;  
+}
+
+.anime-button:hover {
+    background-color: #a020f0;  
+    border-color: #00ffff;  
+    transform: translateY(-5px);  
+    box-shadow: 0 10px 20px rgba(160, 32, 240, 0.7);  
+}
+
+.anime-button:disabled {
+    background-color: #5a5a5a;  
+    border-color: #777;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    color: #cccccc;
+    &::before {
+        display: none;
+    }
+}
+@keyframes stateGlowPulse {
+    0% { box-shadow: 0 0 15px rgba(138, 43, 226, 0.7); }  
+    50% { box-shadow: 0 0 25px rgba(0, 255, 255, 1); }  
+    100% { box-shadow: 0 0 15px rgba(138, 43, 226, 0.7); }
+}
+.anime-button.selected {
+    background-color: #8a2be2;  
+    box-shadow: 0 0 18px rgba(138, 43, 226, 0.9);  
+    font-weight: bold;
+    animation: stateGlowPulse 1.5s ease-in-out infinite alternate;  
+}
+
+.anime-button.correct-answer {
+    background-color: #32cd32;  
+    box-shadow: 0 0 18px rgba(50, 205, 50, 0.9);  
+    font-weight: bold;
+    animation: stateGlowPulse 1.5s ease-in-out infinite alternate; 
+}
+
+.anime-button.incorrect-answer {
+    background-color: #ff4500;  
+    box-shadow: 0 0 18px rgba(255, 69, 0, 0.9);  
+    font-weight: bold;
+    animation: stateGlowPulse 1.5s ease-in-out infinite alternate; 
+}
+.result-text {
+    margin-top: 20px;
+    font-size: 1.3em;  
+    font-weight: bold;
+    min-height: 1.3em;  
+    color: #00ffff;  
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);  
+    animation: textGlowPulse 1s ease-in-out infinite alternate;  
+}
+@keyframes textGlowPulse {
+    0% { text-shadow: 0 0 15px rgba(0, 255, 255, 0.8); }
+    100% { text-shadow: 0 0 20px rgba(0, 255, 255, 1); }
+}
+.final-message {
+    margin-top: 30px;
+    font-size: 2em;  
+    font-weight: bold;
+    font-family: 'Titillium Web', sans-serif;  
+    color: #a020f0;  
+    text-shadow: 0 0 20px rgba(160, 32, 240, 1);  
+    animation: finalMessageGlowPulse 2.5s ease-in-out infinite alternate;  
+}
+@keyframes finalMessageGlowPulse {
+    0% { text-shadow: 0 0 20px rgba(160, 32, 240, 1); }
+    50% { text-shadow: 0 0 30px rgba(0, 255, 255, 1); }  
+    100% { text-shadow: 0 0 20px rgba(160, 32, 240, 1); }
+}
+.final-message.discouragement {
+    color: #ff4500;  
+    text-shadow: 0 0 10px rgba(255, 69, 0, 0.8);
+}
+
+.final-message.encouragement {
+    color: #ffd700;  
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+.navigation-links {
+    margin-top: 30px;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+.navigation-links p {
+    margin: 6px 0;
+}
+
+.navigation-links a {
+    color: #00bfff;  
+    text-decoration: none;
+    border-bottom: 2px solid #00bfff;  
+    transition: color 0.3s ease, border-bottom-color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.navigation-links a:hover {
+    color: #a020f0;  
+    border-bottom-color: #a020f0;
+    text-shadow: 0 0 8px rgba(160, 32, 240, 0.6); 
+}
+.score-display-text {
+    font-size: 1.2em;  
+    margin-bottom: 20px;
+    color: #00ffff;  
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);  
+    font-weight: bold;
+    animation: textGlowPulse 1.5s ease-in-out infinite alternate; 
+}
