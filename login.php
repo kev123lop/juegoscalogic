@@ -1,11 +1,10 @@
 <?php
 session_start();
-
-// --- CONFIGURACIÓN DE LA BASE DE DATOS ---
+ 
 $dbHost = 'localhost';
-$dbUser = 'root'; // ¡Casi siempre es 'root' en XAMPP!
-$dbPass = '';     // ¡Casi siempre es vacío '' en XAMPP!
-$dbName = 'mi_proyecto_db'; // Asegúrate de que este sea el nombre EXACTO de tu base de datos
+$dbUser = 'root';  
+$dbPass = '';     
+$dbName = 'mi_proyecto_db';  
 try {
     $conn = new PDO("mysql:host=$dbHost;dbname=$dbName;charset=utf8", $dbUser, $dbPass);
      
@@ -14,7 +13,7 @@ try {
     die("Error de conexión a la base de datos: " . $e->getMessage());
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $username = trim($_POST['username']);  
     $password = trim($_POST['password']);  
 
