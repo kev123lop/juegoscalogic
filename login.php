@@ -13,7 +13,7 @@ try {
     die("Error de conexión a la base de datos: " . $e->getMessage());
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);  
     $password = trim($_POST['password']);  
 
