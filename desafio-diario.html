@@ -20,11 +20,17 @@
         <div class="navigation-links">
              <p><a href="pagina_bienvenida.html">Inicio</a></p>
              <p><a href="juegoslogicos.html">Regresar</a></p>
-             <p><a href="logout.php">Cerrar Sesión</a></p>
-        </div>
+             <p><a href="#" onclick="logout()">Cerrar Sesión</a></p>
+            </div>
     </div>
     <div class="scanlines"></div>
     <div class="glowing-overlay"></div>
     <script src="juego-preguntas.js"></script>
+    <script>
+    function logout() {
+        localStorage.removeItem('username');
+        window.location.href = 'index.html';
+    }
+</script>
 </body>
 </html>

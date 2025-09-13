@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="section">
-        <h1>¡Bienvenido, <?php session_start(); echo $_SESSION['username']; ?>!</h1>
+        <h1 id="welcome-message"></h1>
         <p>Has iniciado sesión exitosamente. Aquí encontrarás información interesante sobre el cubo Rubik, el ajedrez y los juegos lógicos.</p>
     </div>
 
@@ -73,8 +73,23 @@
         <a href="juegoslogicos.html" class="logout-link">Como Jugar</a>
 
     </div>
-
-    <a href="logout.php" class="logout-link">Cerrar Sesión</a>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const username = localStorage.getItem('username');
+            if (username) {
+                document.getElementById('welcome-message').textContent = `Bienvenido ${username}`;
+            } else {
+                window.location.href = 'index.html'; // Redirige si no hay usuario
+            }
+        });
+    </script>
+    <script>
+    function logout() {
+        localStorage.removeItem('username');
+        window.location.href = 'index.html';
+    }
+</script>
+     <p><a href="#" onclick="logout()">Cerrar Sesión</a></p>
     <a href="pagina_cubo.html" class="logout-link">Jugar</a>
 </body>
 </html>

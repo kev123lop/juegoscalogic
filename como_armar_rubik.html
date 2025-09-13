@@ -144,7 +144,13 @@
         <p>&copy; 2025 Aprende y Juega con Juegos Lógicos</p>
         <p><a href="pagina_bienvenida.html" class="resource-link">Inicio</a></p>
         <p><a href="cubo_virtual.html" class="resource-link">Jugar con un Cubo Virtual</a></p>
-        <p><a href="logout.php" class="resource-link">Cerrar Sesión</a> </p>
+         <p><a href="#" onclick="logout()">Cerrar Sesión</a></p>
     </footer>
+    <script>
+    function logout() {
+        localStorage.removeItem('username');
+        window.location.href = 'index.html';
+    }
+</script>
 </body>
 </html>

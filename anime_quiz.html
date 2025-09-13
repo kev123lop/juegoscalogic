@@ -18,8 +18,15 @@
         <div class="navigation-links anime-text">
              <p><a href="pagina_bienvenida.html">Inicio</a></p>
              <p><a href="juegoslogicos.html">Regresar</a></p>
-             <p><a href="logout.php">Cerrar Sesión</a></p>
+              <p><a href="#" onclick="logout()">Cerrar Sesión</a></p>
         </div>
     </div>
-    <script src="anime_quiz.js"></script> </body>
+    <script src="anime_quiz.js"></script> 
+<script>
+    function logout() {
+        localStorage.removeItem('username');
+        window.location.href = 'index.html';
+    }
+</script>
+</body>
 </html>

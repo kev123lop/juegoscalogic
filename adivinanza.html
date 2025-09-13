@@ -18,8 +18,15 @@
         <div class="navigation-links antique-text"> 
             <p><a href="pagina_bienvenida.html">Inicio</a></p>
             <p><a href="juegoslogicos.html">Regresar</a></p> 
-            <p><a href="logout.php">Cerrar Sesión</a></p>
+             <p><a href="#" onclick="logout()">Cerrar Sesión</a></p>
         </div>
     </div>
-    <script src="adivinanza.js"></script> </body>
+    <script src="adivinanza.js"></script> 
+<script>
+    function logout() {
+        localStorage.removeItem('username');
+        window.location.href = 'index.html';
+    }
+</script>
+</body>
 </html>
