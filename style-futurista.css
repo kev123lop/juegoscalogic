@@ -1,7 +1,8 @@
+
 :root {
     --color-fondo: #0a0a14;  
-    --color-neon-principal: #00f7ff;  
-    --color-neon-secundario: #f900ff;  
+    --color-neon-principal: #00f7ff; 
+    --color-neon-secundario: #f900ff; 
     --color-texto-principal: #e0e0ff;
     --color-texto-secundario: #a0a0c0;
     --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -20,7 +21,6 @@ body {
     padding: 0;
     overflow-x: hidden;
 }
-
 body::after {
     content: '';
     position: fixed;
@@ -34,6 +34,7 @@ body::after {
     pointer-events: none;
     z-index: 100;
 }
+
 header {
     text-align: center;
     padding: 100px 40px;
@@ -56,6 +57,7 @@ header p {
     color: var(--color-texto-secundario);
     animation: fadeIn 3s 1s ease-in-out both;  
 }
+
 .chess-section {  
     background: rgba(15, 22, 41, 0.8);
     backdrop-filter: blur(10px);
@@ -136,6 +138,7 @@ a:hover {
     border-radius: 3px;
     box-shadow: 0 0 15px var(--color-neon-principal);
 }
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -159,6 +162,7 @@ a:hover {
     from { transform: translateY(0); }
     to { transform: translateY(4px); }
 }
+
 @keyframes glitch {
     2%, 64% {
         transform: translate(2px, 0) skew(0deg);

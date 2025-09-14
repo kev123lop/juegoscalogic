@@ -43,7 +43,7 @@
   </style>
 </head>
 <body>
-  < class="wrap">
+  <div class="wrap">
     <div class="stage">
       <div id="cube" class="cube" style="transform: rotateX(-20deg) rotateY(25deg);">
         <div class="face-panel face-U" data-face="U"></div>
@@ -55,8 +55,8 @@
       </div>
     </div>
 
-    <d class="panel">
-      <h1>Cubo Rubik — versión keviniana</h1>
+    <div class="panel">
+      <h1>Cubo Rubik versión keviniana😎😎😎😎😎</h1>
       <div class="row">
         <button class="btn" data-move="U">U</button>
         <button class="btn" data-move="U'">U'</button>
@@ -78,7 +78,12 @@
         <button id="undo" class="btn big">Deshacer</button>
         <button id="auto" class="btn big">Demo</button>
       </div>
-  <footer>Arrastra mi macana</footer>
+
+       
+
+    </div>
+  </div>
+  <footer>Agilarrrrrrr😻</footer>
 
   <script>
     const faces = {
@@ -278,5 +283,12 @@
     render();
 
   </script>
+  <script>
+    function logout() {
+        localStorage.removeItem('username');
+        window.location.href = 'index.html';
+    }
+</script>
+     <p><a href="#" onclick="logout()">Cerrar Sesión</a></p>
 </body>
 </html>
