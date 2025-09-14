@@ -1,34 +1,209 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cubo Rubik Virtual</title>
-    <link rel="stylesheet" href="cubo_styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cubo Rubik funcional (simplificado)</title>
+  <style>
+    :root{
+      --size: 320px;
+      --gap: 12px;
+    }
+    body{background:#0b1220;color:#fff;font-family:system-ui,Segoe UI,Roboto,Arial;margin:0;display:flex;min-height:100vh;align-items:center;justify-content:center;}
+    .app{display:flex;gap:30px;align-items:flex-start}
+    .stage{width:var(--size);height:var(--size);position:relative;perspective:1000px}
+    .cube{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .3s ease}
+    .face-panel{position:absolute;left:50%;top:50%;width:66%;height:66%;transform-style:preserve-3d;display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);gap:6px;box-sizing:border-box}
+    .sticker{border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#111}
+
+    /* position faces */
+    .face-U{transform:translate(-50%,-50%) rotateX( -90deg) translateZ(calc(var(--size)/2 - var(--size)*0.11));}
+    .face-D{transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(var(--size)/2 - var(--size)*0.11));}
+    .face-F{transform:translate(-50%,-50%) translateZ(calc(var(--size)/2 - var(--size)*0.11));}
+    .face-B{transform:translate(-50%,-50%) rotateY(180deg) translateZ(calc(var(--size)/2 - var(--size)*0.11));}
+    .face-R{transform:translate(-50%,-50%) rotateY(90deg) translateZ(calc(var(--size)/2 - var(--size)*0.11));}
+    .face-L{transform:translate(-50%,-50%) rotateY(-90deg) translateZ(calc(var(--size)/2 - var(--size)*0.11));}
+
+    /* colors */
+    .cW{background:#fff}
+    .cY{background:#ffea00}
+    .cG{background:#0abb00}
+    .cB{background:#0066ff}
+    .cO{background:#ff6a00}
+    .cR{background:#d40000}
+
+    /* controls */
+    .controls{width:360px}
+    .controls h2{margin:0 0 10px}
+    .btn{display:inline-block;padding:8px 10px;margin:4px;border-radius:6px;background:#17202b;color:#fff;cursor:pointer;border:1px solid rgba(255,255,255,0.06)}
+    .row{display:flex;gap:8px;flex-wrap:wrap}
+    .info{margin-top:14px;font-size:13px;color:#9aa7b8}
+    .big{font-size:14px;padding:10px 12px}
+
+    /* rotate face animation */
+    .rotating{transition:transform .6s ease;}
+
+    footer{position:fixed;left:8px;bottom:8px;color:#99a9b9;font-size:13px}
+  </style>
 </head>
 <body>
-    <div class="cubo-container">
-        <div class="cubo">
-            </div>
+  <div class="app">
+    <div class="stage">
+      <div id="cube" class="cube" style="transform: rotateX(-20deg) rotateY(30deg)">
+        <div class="face-panel face-U" data-face="U"></div>
+        <div class="face-panel face-F" data-face="F"></div>
+        <div class="face-panel face-R" data-face="R"></div>
+        <div class="face-panel face-B" data-face="B"></div>
+        <div class="face-panel face-L" data-face="L"></div>
+        <div class="face-panel face-D" data-face="D"></div>
+      </div>
     </div>
 
-    <div class="controles">
-        <button onclick="rotarCapa('U')">U</button>
-        <button onclick="rotarCapa('U\'')">U'</button>
-        <button onclick="rotarCapa('D')">D</button>
-        <button onclick="rotarCapa('D\'')">D'</button>
-        <button onclick="rotarCapa('F')">F</button>
-        <button onclick="rotarCapa('F\'')">F'</button>
-        <button onclick="rotarCapa('B')">B</button>
-        <button onclick="rotarCapa('B\'')">B'</button>
-        <button onclick="rotarCapa('L')">L</button>
-        <button onclick="rotarCapa('L\'')">L'</button>
-        <button onclick="rotarCapa('R')">R</button>
-        <button onclick="rotarCapa('R\'')">R'</button>
-        <button onclick="mezclarCuboReal()">Mezclar</button>
-        <button onclick="resolverCuboReal()">Resolver</button>
-    </div>
+    <div class="controls">
+      <h2>Cubo Rubik — interfaz</h2>
+      <div class="row">
+        <button class="btn" data-move="U">U</button>
+        <button class="btn" data-move="U'">U'</button>
+        <button class="btn" data-move="R">R</button>
+        <button class="btn" data-move="R'">R'</button>
+        <button class="btn" data-move="F">F</button>
+        <button class="btn" data-move="F'">F'</button>
+        <button class="btn" data-move="L">L</button>
+        <button class="btn" data-move="L'">L'</button>
+        <button class="btn" data-move="D">D</button>
+        <button class="btn" data-move="D'">D'</button>
+        <button class="btn" data-move="B">B</button>
+        <button class="btn" data-move="B'">B'</button>
+      </div>
 
-    <script src="cubo_script.js"></script>
+      <div style="margin-top:10px" class="row">
+        <button class="btn big" id="scramble">Mezclar</button>
+        <button class="btn big" id="reset">Reiniciar</button>
+        <button class="btn big" id="auto">Auto-gira (demo)</button>
+      </div>
+
+      <div class="info">Nota: Este cubo es <strong>simplificado</strong>: las rotaciones solo giran los stickers de la cara seleccionada (la lógica completa que mueve aristas y esquinas entre caras no está implementada). Aun así puedes practicar rotaciones, mezclar y ver la animación 3D.</div>
+    </div>
+  </div>
+  <footer>Arrastra el cubo con el mouse (mantén presionado) o usa los botones.</footer>
+
+  <script>
+    // Representación simple de las 6 caras (3x3) - U,F,R,B,L,D
+    const faces = {
+      U: Array.from({length:9},()=> 'W'),
+      F: Array.from({length:9},()=> 'G'),
+      R: Array.from({length:9},()=> 'R'),
+      B: Array.from({length:9},()=> 'B'),
+      L: Array.from({length:9},()=> 'O'),
+      D: Array.from({length:9},()=> 'Y')
+    };
+
+    const colorClass = {W:'cW',Y:'cY',G:'cG',B:'cB',O:'cO',R:'cR'};
+
+    // render faces into DOM
+    function render(){
+      document.querySelectorAll('.face-panel').forEach(panel=>{
+        const face = panel.dataset.face;
+        panel.innerHTML = '';
+        for(let i=0;i<9;i++){
+          const s = document.createElement('div');
+          s.className = 'sticker ' + colorClass[faces[face][i]];
+          s.dataset.i = i;
+          panel.appendChild(s);
+        }
+      });
+    }
+
+    render();
+
+    // rotate a 3x3 face's stickers clockwise or ccw
+    function rotateFaceArray(arr, clockwise=true){
+      // arr is length 9
+      const res = arr.slice();
+      if(clockwise){
+        res[0]=arr[6];res[1]=arr[3];res[2]=arr[0];
+        res[3]=arr[7];res[4]=arr[4];res[5]=arr[1];
+        res[6]=arr[8];res[7]=arr[5];res[8]=arr[2];
+      } else {
+        res[0]=arr[2];res[1]=arr[5];res[2]=arr[8];
+        res[3]=arr[1];res[4]=arr[4];res[5]=arr[7];
+        res[6]=arr[0];res[7]=arr[3];res[8]=arr[6];
+      }
+      return res;
+    }
+
+    // animate rotation of a face panel visually and update data (simplified: only face rotated)
+    function animateAndRotate(face, clockwise=true){
+      const panel = document.querySelector(`.face-panel[data-face="${face}"]`);
+      if(!panel) return;
+      // apply CSS rotate to indicate movement
+      panel.style.transition = 'transform .6s ease';
+      const axis = (face==='U' || face==='D')? 'X': (face==='L' || face==='R')? 'Y':'Z';
+      const angle = clockwise? 90 : -90;
+      // current transform is set by CSS, so we append rotation
+      panel.style.transform += ` rotate${axis}(${angle}deg)`;
+
+      setTimeout(()=>{
+        // reset style (remove appended rotate - simply reset to CSS rule)
+        panel.style.transition = '';
+        panel.style.transform = '';
+        // update face array
+        faces[face] = rotateFaceArray(faces[face], clockwise);
+        render();
+      }, 620);
+    }
+
+    // handle buttons
+    document.querySelectorAll('[data-move]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const move = btn.dataset.move;
+        const face = move[0];
+        const ccw = move.includes("'");
+        animateAndRotate(face, !ccw);
+      });
+    });
+
+    document.getElementById('reset').addEventListener('click', ()=>{
+      faces.U.fill('W');faces.F.fill('G');faces.R.fill('R');faces.B.fill('B');faces.L.fill('O');faces.D.fill('Y');
+      render();
+    });
+
+    document.getElementById('scramble').addEventListener('click', ()=>{
+      const moves = ['U','U\'','R','R\'','F','F\'','L','L\'','D','D\'','B','B\''];
+      for(let i=0;i<12;i++){
+        const m = moves[Math.floor(Math.random()*moves.length)];
+        const face = m[0];
+        const ccw = m.includes("'");
+        // apply immediately without waiting (visuals not chained)
+        faces[face] = rotateFaceArray(faces[face], !ccw);
+      }
+      render();
+    });
+
+    // simple auto demo
+    let autoTimer = null;
+    document.getElementById('auto').addEventListener('click', ()=>{
+      if(autoTimer){clearInterval(autoTimer);autoTimer=null;document.getElementById('auto').textContent='Auto-gira (demo)';return}
+      document.getElementById('auto').textContent='Detener demo';
+      const moves = ['U','R','F','L','D','B'];
+      autoTimer = setInterval(()=>{
+        const m = moves[Math.floor(Math.random()*moves.length)];
+        faces[m] = rotateFaceArray(faces[m], true);
+        render();
+      }, 500);
+    });
+
+    // allow dragging to rotate whole cube
+    const cube = document.getElementById('cube');
+    let dragging=false,lastX, lastY, rotX=-20, rotY=30;
+    document.querySelector('.stage').addEventListener('pointerdown', (e)=>{dragging=true;lastX=e.clientX;lastY=e.clientY;document.body.style.cursor='grabbing';});
+    window.addEventListener('pointerup', ()=>{dragging=false;document.body.style.cursor='auto'});
+    window.addEventListener('pointermove', (e)=>{
+      if(!dragging) return;
+      const dx = e.clientX - lastX; const dy = e.clientY - lastY; lastX=e.clientX; lastY=e.clientY;
+      rotY += dx*0.4; rotX -= dy*0.4; cube.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+    });
+
+  </script>
 </body>
 </html>
