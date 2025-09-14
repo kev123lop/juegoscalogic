@@ -3,53 +3,57 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Cubo Rubik funcional (simplificado)</title>
+  <title>Cubo Rubik funcional — versión mejorada</title>
   <style>
-    :root{
-      --size: 320px;
-      --gap: 12px;
-    }
-    body{background:#0b1220;color:#fff;font-family:system-ui,Segoe UI,Roboto,Arial;margin:0;display:flex;min-height:100vh;align-items:center;justify-content:center;}
-    .app{display:flex;gap:30px;align-items:flex-start}
-    .stage{width:var(--size);height:var(--size);position:relative;perspective:1000px}
-    .cube{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .3s ease}
-    .face-panel{position:absolute;left:50%;top:50%;width:66%;height:66%;transform-style:preserve-3d;display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);gap:6px;box-sizing:border-box}
-    .sticker{border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#111}
+    :root{--size:380px;--bg:#071021}
+    *{box-sizing:border-box}
+    body{background:linear-gradient(180deg,#071021 0%, #0b1726 100%);color:#e6f0ff;font-family:Inter,Segoe UI,Arial;margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center}
+    .wrap{display:flex;gap:28px;align-items:flex-start;padding:28px}
 
-    /* position faces */
-    .face-U{transform:translate(-50%,-50%) rotateX( -90deg) translateZ(calc(var(--size)/2 - var(--size)*0.11));}
-    .face-D{transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(var(--size)/2 - var(--size)*0.11));}
-    .face-F{transform:translate(-50%,-50%) translateZ(calc(var(--size)/2 - var(--size)*0.11));}
-    .face-B{transform:translate(-50%,-50%) rotateY(180deg) translateZ(calc(var(--size)/2 - var(--size)*0.11));}
-    .face-R{transform:translate(-50%,-50%) rotateY(90deg) translateZ(calc(var(--size)/2 - var(--size)*0.11));}
-    .face-L{transform:translate(-50%,-50%) rotateY(-90deg) translateZ(calc(var(--size)/2 - var(--size)*0.11));}
+    /* escenario 3D */
+    .stage{width:var(--size);height:var(--size);perspective:1200px}
+    .cube{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+
+    .face-panel{position:absolute;left:50%;top:50%;width:66%;height:66%;transform-style:preserve-3d;display:grid;grid-template:repeat(3,1fr)/repeat(3,1fr);gap:6px;box-sizing:border-box;pointer-events:auto}
+    .sticker{border-radius:6px;display:flex;align-items:center;justify-content:center;font-weight:700;color:#0b0b0b;box-shadow:inset 0 -1px rgba(0,0,0,0.2)}
+
+    /* base transforms (must match CSS positions) */
+    .face-U{transform:translate(-50%,-50%) rotateX(-90deg) translateZ(calc(var(--size)/2 - 40px));}
+    .face-D{transform:translate(-50%,-50%) rotateX(90deg) translateZ(calc(var(--size)/2 - 40px));}
+    .face-F{transform:translate(-50%,-50%) translateZ(calc(var(--size)/2 - 40px));}
+    .face-B{transform:translate(-50%,-50%) rotateY(180deg) translateZ(calc(var(--size)/2 - 40px));}
+    .face-R{transform:translate(-50%,-50%) rotateY(90deg) translateZ(calc(var(--size)/2 - 40px));}
+    .face-L{transform:translate(-50%,-50%) rotateY(-90deg) translateZ(calc(var(--size)/2 - 40px));}
 
     /* colors */
     .cW{background:#fff}
     .cY{background:#ffea00}
-    .cG{background:#0abb00}
-    .cB{background:#0066ff}
-    .cO{background:#ff6a00}
-    .cR{background:#d40000}
+    .cG{background:#09b600}
+    .cB{background:#0b6bff}
+    .cO{background:#ff8a00}
+    .cR{background:#d60000}
 
     /* controls */
-    .controls{width:360px}
-    .controls h2{margin:0 0 10px}
-    .btn{display:inline-block;padding:8px 10px;margin:4px;border-radius:6px;background:#17202b;color:#fff;cursor:pointer;border:1px solid rgba(255,255,255,0.06)}
+    .panel{width:420px}
+    h1{margin:0 0 12px;font-size:20px}
     .row{display:flex;gap:8px;flex-wrap:wrap}
-    .info{margin-top:14px;font-size:13px;color:#9aa7b8}
-    .big{font-size:14px;padding:10px 12px}
+    .btn{background:#0f1a2a;border:1px solid rgba(255,255,255,0.04);padding:8px 10px;border-radius:6px;color:#e6f0ff;cursor:pointer}
+    .big{padding:10px 12px;font-weight:700}
+    .info{margin-top:12px;color:#b6c6db;font-size:13px}
 
-    /* rotate face animation */
-    .rotating{transition:transform .6s ease;}
+    footer{position:fixed;left:10px;bottom:8px;color:#9fb0c9;font-size:12px}
 
-    footer{position:fixed;left:8px;bottom:8px;color:#99a9b9;font-size:13px}
+    /* small animation helper */
+    .animating{transition:transform .55s cubic-bezier(.2,.9,.2,1)}
+
+    /* responsive */
+    @media(max-width:900px){.wrap{flex-direction:column;align-items:center}.panel{width:90vw}}
   </style>
 </head>
 <body>
-  <div class="app">
+  <div class="wrap">
     <div class="stage">
-      <div id="cube" class="cube" style="transform: rotateX(-20deg) rotateY(30deg)">
+      <div id="cube" class="cube" style="transform: rotateX(-20deg) rotateY(25deg);">
         <div class="face-panel face-U" data-face="U"></div>
         <div class="face-panel face-F" data-face="F"></div>
         <div class="face-panel face-R" data-face="R"></div>
@@ -59,8 +63,8 @@
       </div>
     </div>
 
-    <div class="controls">
-      <h2>Cubo Rubik — interfaz</h2>
+    <div class="panel">
+      <h1>Cubo Rubik — versión mejorada (movimientos completos)</h1>
       <div class="row">
         <button class="btn" data-move="U">U</button>
         <button class="btn" data-move="U'">U'</button>
@@ -77,132 +81,247 @@
       </div>
 
       <div style="margin-top:10px" class="row">
-        <button class="btn big" id="scramble">Mezclar</button>
-        <button class="btn big" id="reset">Reiniciar</button>
-        <button class="btn big" id="auto">Auto-gira (demo)</button>
+        <button id="scramble" class="btn big">Mezclar</button>
+        <button id="reset" class="btn big">Reiniciar</button>
+        <button id="undo" class="btn big">Deshacer</button>
+        <button id="auto" class="btn big">Demo</button>
       </div>
 
-      <div class="info">Nota: Este cubo es <strong>simplificado</strong>: las rotaciones solo giran los stickers de la cara seleccionada (la lógica completa que mueve aristas y esquinas entre caras no está implementada). Aun así puedes practicar rotaciones, mezclar y ver la animación 3D.</div>
+      <div class="info">
+        <p>Esta versión actualiza correctamente las caras adyacentes al ejecutar movimientos (aristas y esquinas se mueven entre caras). La animación gira la cara visualmente antes de aplicar el estado real.</p>
+        <p>Consejo: usa <strong>Mezclar</strong> y luego intenta restaurar con <strong>Reiniciar</strong> para comprobar estado original.</p>
+      </div>
+
     </div>
   </div>
-  <footer>Arrastra el cubo con el mouse (mantén presionado) o usa los botones.</footer>
+  <footer>Arrastra la escena para rotar la vista (pointer drag)</footer>
 
   <script>
-    // Representación simple de las 6 caras (3x3) - U,F,R,B,L,D
+    // Estado del cubo: faces U F R B L D
     const faces = {
       U: Array.from({length:9},()=> 'W'),
       F: Array.from({length:9},()=> 'G'),
       R: Array.from({length:9},()=> 'R'),
       B: Array.from({length:9},()=> 'B'),
       L: Array.from({length:9},()=> 'O'),
-      D: Array.from({length:9},()=> 'Y')
+      D: Array.from({length:9},()=> 'Y'),
     };
 
     const colorClass = {W:'cW',Y:'cY',G:'cG',B:'cB',O:'cO',R:'cR'};
 
-    // render faces into DOM
+    // base transforms map so we can animate relative rotations
+    const baseTransforms = {
+      U: 'translate(-50%,-50%) rotateX(-90deg) translateZ(calc(var(--size)/2 - 40px))',
+      D: 'translate(-50%,-50%) rotateX(90deg) translateZ(calc(var(--size)/2 - 40px))',
+      F: 'translate(-50%,-50%) translateZ(calc(var(--size)/2 - 40px))',
+      B: 'translate(-50%,-50%) rotateY(180deg) translateZ(calc(var(--size)/2 - 40px))',
+      R: 'translate(-50%,-50%) rotateY(90deg) translateZ(calc(var(--size)/2 - 40px))',
+      L: 'translate(-50%,-50%) rotateY(-90deg) translateZ(calc(var(--size)/2 - 40px))',
+    };
+
+    // render to DOM
     function render(){
       document.querySelectorAll('.face-panel').forEach(panel=>{
-        const face = panel.dataset.face;
+        const f = panel.dataset.face;
         panel.innerHTML = '';
         for(let i=0;i<9;i++){
           const s = document.createElement('div');
-          s.className = 'sticker ' + colorClass[faces[face][i]];
+          s.className = 'sticker ' + colorClass[faces[f][i]];
           s.dataset.i = i;
           panel.appendChild(s);
         }
+        // ensure base transform reset
+        panel.style.transform = baseTransforms[f];
       });
     }
-
     render();
 
-    // rotate a 3x3 face's stickers clockwise or ccw
-    function rotateFaceArray(arr, clockwise=true){
-      // arr is length 9
-      const res = arr.slice();
-      if(clockwise){
-        res[0]=arr[6];res[1]=arr[3];res[2]=arr[0];
-        res[3]=arr[7];res[4]=arr[4];res[5]=arr[1];
-        res[6]=arr[8];res[7]=arr[5];res[8]=arr[2];
+    // rotate a face array cw/ccw
+    function rotateFaceArray(arr, cw=true){
+      const r = arr.slice();
+      if(cw){
+        r[0]=arr[6]; r[1]=arr[3]; r[2]=arr[0];
+        r[3]=arr[7]; r[4]=arr[4]; r[5]=arr[1];
+        r[6]=arr[8]; r[7]=arr[5]; r[8]=arr[2];
       } else {
-        res[0]=arr[2];res[1]=arr[5];res[2]=arr[8];
-        res[3]=arr[1];res[4]=arr[4];res[5]=arr[7];
-        res[6]=arr[0];res[7]=arr[3];res[8]=arr[6];
+        r[0]=arr[2]; r[1]=arr[5]; r[2]=arr[8];
+        r[3]=arr[1]; r[4]=arr[4]; r[5]=arr[7];
+        r[6]=arr[0]; r[7]=arr[3]; r[8]=arr[6];
       }
-      return res;
+      return r;
     }
 
-    // animate rotation of a face panel visually and update data (simplified: only face rotated)
-    function animateAndRotate(face, clockwise=true){
-      const panel = document.querySelector(`.face-panel[data-face="${face}"]`);
-      if(!panel) return;
-      // apply CSS rotate to indicate movement
-      panel.style.transition = 'transform .6s ease';
-      const axis = (face==='U' || face==='D')? 'X': (face==='L' || face==='R')? 'Y':'Z';
-      const angle = clockwise? 90 : -90;
-      // current transform is set by CSS, so we append rotation
-      panel.style.transform += ` rotate${axis}(${angle}deg)`;
-
-      setTimeout(()=>{
-        // reset style (remove appended rotate - simply reset to CSS rule)
-        panel.style.transition = '';
-        panel.style.transform = '';
-        // update face array
-        faces[face] = rotateFaceArray(faces[face], clockwise);
-        render();
-      }, 620);
+    // Core moves: update faces state correctly (including adjacent stickers)
+    // Mappings below implement standard face moves (clockwise). Counterclockwise uses 3x clockwise.
+    function move_U(){
+      faces.U = rotateFaceArray(faces.U, true);
+      const t = faces.F.slice(0,3);
+      [faces.F[0],faces.F[1],faces.F[2]] = [faces.R[0],faces.R[1],faces.R[2]];
+      [faces.R[0],faces.R[1],faces.R[2]] = [faces.B[0],faces.B[1],faces.B[2]];
+      [faces.B[0],faces.B[1],faces.B[2]] = [faces.L[0],faces.L[1],faces.L[2]];
+      [faces.L[0],faces.L[1],faces.L[2]] = t;
     }
 
-    // handle buttons
-    document.querySelectorAll('[data-move]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const move = btn.dataset.move;
+    function move_D(){
+      faces.D = rotateFaceArray(faces.D, true);
+      const t = faces.F.slice(6,9);
+      [faces.F[6],faces.F[7],faces.F[8]] = [faces.L[6],faces.L[7],faces.L[8]];
+      [faces.L[6],faces.L[7],faces.L[8]] = [faces.B[6],faces.B[7],faces.B[8]];
+      [faces.B[6],faces.B[7],faces.B[8]] = [faces.R[6],faces.R[7],faces.R[8]];
+      [faces.R[6],faces.R[7],faces.R[8]] = t;
+    }
+
+    function move_R(){
+      faces.R = rotateFaceArray(faces.R, true);
+      const t = [faces.U[2],faces.U[5],faces.U[8]];
+      [faces.U[2],faces.U[5],faces.U[8]] = [faces.F[2],faces.F[5],faces.F[8]];
+      [faces.F[2],faces.F[5],faces.F[8]] = [faces.D[2],faces.D[5],faces.D[8]];
+      [faces.D[2],faces.D[5],faces.D[8]] = [faces.B[6],faces.B[3],faces.B[0]];
+      [faces.B[6],faces.B[3],faces.B[0]] = t;
+    }
+
+    function move_L(){
+      faces.L = rotateFaceArray(faces.L, true);
+      const t = [faces.U[0],faces.U[3],faces.U[6]];
+      [faces.U[0],faces.U[3],faces.U[6]] = [faces.B[8],faces.B[5],faces.B[2]];
+      [faces.B[8],faces.B[5],faces.B[2]] = [faces.D[0],faces.D[3],faces.D[6]];
+      [faces.D[0],faces.D[3],faces.D[6]] = [faces.F[0],faces.F[3],faces.F[6]];
+      [faces.F[0],faces.F[3],faces.F[6]] = t;
+    }
+
+    function move_F(){
+      faces.F = rotateFaceArray(faces.F, true);
+      const t = [faces.U[6],faces.U[7],faces.U[8]];
+      [faces.U[6],faces.U[7],faces.U[8]] = [faces.L[8],faces.L[5],faces.L[2]];
+      [faces.L[8],faces.L[5],faces.L[2]] = [faces.D[2],faces.D[1],faces.D[0]];
+      [faces.D[2],faces.D[1],faces.D[0]] = [faces.R[0],faces.R[3],faces.R[6]];
+      [faces.R[0],faces.R[3],faces.R[6]] = t;
+    }
+
+    function move_B(){
+      faces.B = rotateFaceArray(faces.B, true);
+      const t = [faces.U[0],faces.U[1],faces.U[2]];
+      [faces.U[0],faces.U[1],faces.U[2]] = [faces.R[2],faces.R[5],faces.R[8]];
+      [faces.R[2],faces.R[5],faces.R[8]] = [faces.D[8],faces.D[7],faces.D[6]];
+      [faces.D[8],faces.D[7],faces.D[6]] = [faces.L[6],faces.L[3],faces.L[0]];
+      [faces.L[6],faces.L[3],faces.L[0]] = t;
+    }
+
+    // apply move name
+    const moveFns = {U:move_U, D:move_D, R:move_R, L:move_L, F:move_F, B:move_B};
+
+    // queue to prevent overlapping animations
+    const queue = [];
+    let busy=false;
+    function enqueueMove(moveName){ queue.push(moveName); if(!busy) processQueue(); }
+
+    function processQueue(){
+      if(queue.length===0){ busy=false; return; }
+      busy=true;
+      const m = queue.shift();
+      animateMove(m).then(()=>{ processQueue(); });
+    }
+
+    // animate face visually then update state
+    function animateMove(move){
+      return new Promise(resolve=>{
         const face = move[0];
         const ccw = move.includes("'");
-        animateAndRotate(face, !ccw);
+        const times = ccw?3:1; // ccw = 3 cw rotations
+        const panel = document.querySelector(`.face-panel[data-face="${face}"]`);
+        if(!panel){ // fallback, just apply
+          applyMoveTimes(face,times);
+          render();
+          resolve();
+          return;
+        }
+        // animate by rotating around local axis
+        const axis = (face==='U' || face==='D')? 'X': (face==='L' || face==='R')? 'Y':'Z';
+        let count=0;
+        function singleRotate(){
+          // set animating style
+          panel.classList.add('animating');
+          panel.style.transform = baseTransforms[face] + ` rotate${axis}(${90*(count+1)}deg)`;
+          setTimeout(()=>{
+            // after animation, apply one clockwise move to state
+            applyMoveTimes(face,1);
+            render();
+            count++;
+            // reset transform to base (no appended rotation)
+            panel.classList.remove('animating');
+            panel.style.transform = baseTransforms[face];
+            if(count<times) singleRotate(); else resolve();
+          }, 220);
+        }
+        singleRotate();
+      });
+    }
+
+    function applyMoveTimes(face, times){
+      for(let i=0;i<times;i++) moveFns[face]();
+      // push to history for undo
+      history.push({face, times});
+      if(history.length>100) history.shift();
+    }
+
+    // move buttons
+    document.querySelectorAll('[data-move]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        enqueueMove(btn.dataset.move);
       });
     });
 
+    // controls: reset, scramble, undo, auto
+    const initialState = JSON.stringify(faces);
     document.getElementById('reset').addEventListener('click', ()=>{
+      // reset to solved
       faces.U.fill('W');faces.F.fill('G');faces.R.fill('R');faces.B.fill('B');faces.L.fill('O');faces.D.fill('Y');
-      render();
+      history.length=0; queue.length=0; render();
     });
+
+    // simple scramble sequence
+    function randomMove(){
+      const moves = ['U','U\'','R','R\'','F','F\'','L','L\'','D','D\'','B','B\''];
+      return moves[Math.floor(Math.random()*moves.length)];
+    }
 
     document.getElementById('scramble').addEventListener('click', ()=>{
-      const moves = ['U','U\'','R','R\'','F','F\'','L','L\'','D','D\'','B','B\''];
-      for(let i=0;i<12;i++){
-        const m = moves[Math.floor(Math.random()*moves.length)];
-        const face = m[0];
-        const ccw = m.includes("'");
-        // apply immediately without waiting (visuals not chained)
-        faces[face] = rotateFaceArray(faces[face], !ccw);
-      }
-      render();
+      const seq = [];
+      for(let i=0;i<20;i++) seq.push(randomMove());
+      // enqueue with spacing
+      seq.forEach(m=>enqueueMove(m));
     });
 
-    // simple auto demo
-    let autoTimer = null;
+    const history = [];
+    document.getElementById('undo').addEventListener('click', ()=>{
+      if(history.length===0) return;
+      // take last and inverse it
+      const last = history.pop();
+      const inverseTimes = (4 - (last.times % 4)) %4;
+      for(let i=0;i<inverseTimes;i++) enqueueMove(last.face);
+    });
+
+    let autoInterval=null;
     document.getElementById('auto').addEventListener('click', ()=>{
-      if(autoTimer){clearInterval(autoTimer);autoTimer=null;document.getElementById('auto').textContent='Auto-gira (demo)';return}
-      document.getElementById('auto').textContent='Detener demo';
-      const moves = ['U','R','F','L','D','B'];
-      autoTimer = setInterval(()=>{
-        const m = moves[Math.floor(Math.random()*moves.length)];
-        faces[m] = rotateFaceArray(faces[m], true);
-        render();
-      }, 500);
+      if(autoInterval){ clearInterval(autoInterval); autoInterval=null; document.getElementById('auto').textContent='Demo'; return; }
+      document.getElementById('auto').textContent='Detener';
+      autoInterval = setInterval(()=>{ enqueueMove(randomMove()); }, 420);
     });
 
-    // allow dragging to rotate whole cube
-    const cube = document.getElementById('cube');
-    let dragging=false,lastX, lastY, rotX=-20, rotY=30;
-    document.querySelector('.stage').addEventListener('pointerdown', (e)=>{dragging=true;lastX=e.clientX;lastY=e.clientY;document.body.style.cursor='grabbing';});
-    window.addEventListener('pointerup', ()=>{dragging=false;document.body.style.cursor='auto'});
+    // dragging to rotate scene
+    const cubeEl = document.getElementById('cube');
+    const stage = document.querySelector('.stage');
+    let dragging=false, lastX=0,lastY=0, rx=-20, ry=25;
+    stage.addEventListener('pointerdown', (e)=>{ dragging=true; lastX=e.clientX; lastY=e.clientY; stage.setPointerCapture(e.pointerId); });
+    window.addEventListener('pointerup', ()=>{ dragging=false; });
     window.addEventListener('pointermove', (e)=>{
       if(!dragging) return;
       const dx = e.clientX - lastX; const dy = e.clientY - lastY; lastX=e.clientX; lastY=e.clientY;
-      rotY += dx*0.4; rotX -= dy*0.4; cube.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+      ry += dx*0.35; rx -= dy*0.35; cubeEl.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
     });
+
+    // initial render
+    render();
 
   </script>
 </body>
